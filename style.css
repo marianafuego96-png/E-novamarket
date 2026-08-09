@@ -1,0 +1,184 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* Barra superior */
+
+.top-bar{
+    background:#2b8d8b;
+    color:#fff;
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* Header */
+
+.header{
+
+    width:95%;
+    margin:auto;
+
+    background:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 40px;
+
+    border-radius:0 0 20px 20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/* Logo */
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
+
+.logo-icon{
+
+    width:55px;
+    height:55px;
+
+    background:#2b8d8b;
+
+    clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:3px;
+
+    color:white;
+    font-weight:bold;
+
+}
+
+.logo-text h2{
+
+    font-size:22px;
+    color:#24434d;
+
+}
+
+.logo-text p{
+
+    font-size:18px;
+    color:#24434d;
+    font-weight:bold;
+
+}
+
+/* Menú */
+
+.nav{
+
+    display:flex;
+    gap:35px;
+
+}
+
+.nav a{
+
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    position:relative;
+    transition:.3s;
+
+}
+
+.nav a:hover{
+
+    color:#2b8d8b;
+
+}
+
+.nav .active{
+
+    color:#2b8d8b;
+    font-weight:bold;
+
+}
+
+.nav .active::after{
+
+    content:"";
+    position:absolute;
+
+    width:100%;
+    height:3px;
+
+    background:#2b8d8b;
+
+    left:0;
+    bottom:-8px;
+
+}
+
+/* Iconos */
+
+.icons{
+
+    display:flex;
+    align-items:center;
+    gap:25px;
+
+    font-size:20px;
+
+    color:#333;
+
+}
+
+.icons i{
+
+    cursor:pointer;
+
+}
+
+.cart{
+
+    position:relative;
+
+}
+
+.cart span{
+
+    position:absolute;
+
+    top:-8px;
+    right:-10px;
+
+    width:18px;
+    height:18px;
+
+    
+    /* background:#2b8d8b; */
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:11px;
+    font-weight:bold;
+
+}
