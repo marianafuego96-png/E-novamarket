@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 
 export default function Checkout() {
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const { items, totalPrecio, updateQuantity, removeFromCart } = useCart();
 
   const [form, setForm] = useState({
@@ -25,8 +29,59 @@ export default function Checkout() {
     console.log("Datos del cliente:", form);
   }
 
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4">
+      {/* Encabezado — mismo lenguaje visual que el home (logo, nombre, usuario, cerrar sesión) */}
+      <div className="max-w-6xl mx-auto mb-6">
+        <div className="rounded-2xl bg-white px-4 py-3 sm:px-6 shadow-md flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            {/* Volver: mismo lugar que estaba, ahora integrado en la barra */}
+            <button
+              onClick={() => navigate(-1)}
+              className="flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 bg-[#457B9D] text-sm font-semibold text-white transition hover:bg-[#3a6a87]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              Volver
+            </button>
+
+            {/* Logo, igual al del header del home */}
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#457B9D] text-sm font-semibold text-white text-teal-950 ">
+                NM
+              </div>
+              <span className="text-sm font-medium text-black">Nova-Market</span>
+            </div>
+          </div>
+
+          {/* Usuario logueado, igual que en el home */}
+          {user && (
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-medium text-black">Hola, {user.name}</span>
+              <button
+                onClick={handleLogout}
+                className="rounded-full bg-[#457B9D] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3a6a87]"
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-6">
         {/* Resumen del Pedido */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4">

@@ -1,9 +1,7 @@
-// src/pages/Login.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import { useAuth } from "../context/AuthContext";
-
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -34,7 +32,18 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+    <div className="min-h-screen flex flex-col items-center bg-slate-50 px-4 py-10">
+      {/* Encabezado: logo + nombre, con link para volver al inicio */}
+      <Link to="/" className="mb-10 flex items-center gap-3">
+        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#457B9D] text-sm font-semibold text-white">
+          NM
+        </div>
+        <div className="text-left">
+          <p className="text-base font-bold text-slate-900">Nova-Market</p>
+          <p className="text-xs text-slate-500">Tu ecommerce de confianza</p>
+        </div>
+      </Link>
+
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
         <h1 className="text-2xl font-semibold text-slate-900 mb-1">Iniciar sesión</h1>
         <p className="text-sm text-slate-500 mb-6">Ingresá tus datos para ingresar a tu cuenta</p>
@@ -83,6 +92,14 @@ export default function Login() {
           </button>
         </form>
       </div>
+
+      {/* Link para ir a registro, ya que no hay header/nav en esta pantalla */}
+      <p className="mt-6 text-sm text-slate-600">
+        ¿No tenés cuenta?{" "}
+        <Link to="/register" className="font-semibold text-[#457B9D] hover:underline">
+          Registrate
+        </Link>
+      </p>
     </div>
   );
 }

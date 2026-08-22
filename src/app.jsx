@@ -4,6 +4,8 @@ import Register from "./pages/Register";
 import Login from "./pages/login";
 import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
+import RutaAdmin from "./components/RutaAdmin";
+import AdminProductos from "./pages/AdminProductos";
 
 function App() {
   return (
@@ -14,6 +16,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/admin"
+            element={
+              <RutaAdmin>
+                <AdminProductos />
+              </RutaAdmin>
+            }
+          />
         </Routes>
         <Footer />
       </div>
@@ -22,4 +32,3 @@ function App() {
 }
 
 export default App;
-// usuario marcos pass prueba  mi email y pass (123456789// 
