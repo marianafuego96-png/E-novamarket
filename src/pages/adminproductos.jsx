@@ -4,6 +4,7 @@ import { Search, Plus, Pencil, Trash2, ImageOff, ChevronLeft } from "lucide-reac
 import EditarProducto from "./EditarProducto"; // modal de edición
 import NuevoProducto from "./NuevoProducto"; // modal de alta
 import { useAuth } from "../context/AuthContext"; // ajustá la ruta si tu AuthContext está en otro lugar
+import logoNM from "../assets/logo-novamarket.png";
 
 const API_URL = "http://localhost:5000/api/products";
 
@@ -106,23 +107,29 @@ export default function AdminProductos() {
             {/* Vuelve a la tienda (home), ya que el admin llega acá desde el botón "Administración" del header */}
             <button
               onClick={() => navigate("/")}
-              className="flex items-center gap-1 rounded-full bg-teal-900/40 px-3 py-1.5 text-sm font-medium hover:bg-teal-900/60"
+              className="flex items-center gap-1 rounded-full bg-[#457B9D] px-3 py-1.5 text-sm font-medium hover: bg-[#3a6a87]"
             >
               <ChevronLeft size={16} />
               Volver
+              
             </button>
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-teal-950 text-white font-bold">
-              NM
+            <div className="flex h-20 w-19 items-center justify-center rounded-md bg-[#457B9D] p-1 shadow-sm">
+              <img
+                src={logoNM}
+                alt="NovaMarket - E-commerce"
+                className="h-full w-full object-contain"
+              />
             </div>
             <h1 className="text-sm font-semibold tracking-wide sm:text-base">
-              ADMINISTRACIÓN DE PRODUCTOS
+              ADMINISTRACIÓN
+
             </h1>
           </div>
           <div className="flex items-center gap-3 text-sm">
             <span className="hidden sm:inline">Usuario: {user?.name ?? "—"}</span>
             <button
               onClick={handleCerrarSesion}
-              className="rounded bg-teal-900/40 px-3 py-1.5 font-medium hover:bg-teal-900/60"
+              className="rounded bg-[#457B9D] px-3 py-1.5 font-medium hover:bg-[#3a6a87]"
             >
               Cerrar sesión
             </button>
@@ -135,7 +142,7 @@ export default function AdminProductos() {
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <button
             onClick={() => setMostrarNuevoProducto(true)}
-            className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+            className="flex items-center justify-center gap-2 rounded-lg bg-[#457B9D] px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-indigo-700"
           >
             <Plus size={18} />
             Nuevo Producto

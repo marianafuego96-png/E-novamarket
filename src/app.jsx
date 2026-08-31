@@ -6,6 +6,7 @@ import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
 import RutaAdmin from "./components/RutaAdmin";
 import AdminProductos from "./pages/AdminProductos";
+import AdminOrdenes from "./pages/AdminOrdenes";
 
 function App() {
   return (
@@ -16,11 +17,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/adminOrdenes" element={<AdminOrdenes />} />
           <Route
             path="/admin"
             element={
               <RutaAdmin>
                 <AdminProductos />
+                <AdminOrdenes />
               </RutaAdmin>
             }
           />
@@ -30,5 +33,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

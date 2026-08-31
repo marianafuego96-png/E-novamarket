@@ -5,6 +5,7 @@ import { Truck, CreditCard, Lock, Headphones, ChevronRight, SlidersHorizontal, L
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import heroProductosImg from "../assets/hero-productos.png";
+import logoNM from "../assets/logo-novamarket.png";
 
 // Endpoint real de productos (mismo que usa el panel de admin)
 const API_URL = "http://localhost:5000/api/products";
@@ -137,8 +138,12 @@ export default function EcommerceHero() {
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="flex h-15 w-15 items-center justify-center rounded-lg bg-[#457B9D] text-sm font-semibold text-teal-950">
-                NM
+              <div className="flex h-20 w-19 items-center justify-center rounded-xl bg-[#457B9D] p-1.5 shadow-sm">
+                <img
+                  src={logoNM}
+                  alt="NovaMarket - E-commerce"
+                  className="h-full w-full object-contain"
+                />
               </div>
               <span className="text-sm font-medium text-black">Nova-Market</span>
             </div>
@@ -393,12 +398,12 @@ export default function EcommerceHero() {
                   className="flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md"
                 >
                   <div className="flex flex-col gap-2">
-                    <div className="h-24 w-full rounded-lg bg-gray-100 flex items-center justify-center">
+                    <div className="h-24 w-full rounded-lg bg-gray-100 flex items-center justify-center p-2">
                       {producto.imagen ? (
                         <img
                           src={producto.imagen}
                           alt={producto.nombre}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full object-contain"
                         />
                       ) : (
                         <svg

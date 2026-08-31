@@ -1,5 +1,6 @@
 import React from "react";
 import { Truck, CreditCard, Lock, Headphones, ShieldCheck } from "lucide-react";
+import logoNM from "../assets/logo-novamarket.png";
 
 export default function Footer() {
   return (
@@ -10,8 +11,12 @@ export default function Footer() {
           {/* Columna 1: presentación + beneficios en columna */}
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#457B9D] text-sm font-semibold text-white">
-                NM
+              <div className="flex h-20 w-19 shrink-0 items-center justify-center rounded-lg bg-[#457B9D] p-1 shadow-sm">
+                <img
+                  src={logoNM}
+                  alt="NovaMarket - E-commerce"
+                  className="h-full w-full object-contain"
+                />
               </div>
               <div>
                 <h2 className="text-base font-bold text-black">Nova-Market</h2>
@@ -37,14 +42,11 @@ export default function Footer() {
               1 - Inicio
             </a>
             <a href="/catalogo" className="text-xs text-black/90 hover:text-black transition">
-              2 - Catalogo
+              2 - Contacto
             </a>
-            <a href="/ofertas" className="text-xs text-black/90 hover:text-black transition">
-              3 - Ofertas
-            </a>
-            <a href="/contacto" className="text-xs text-black/90 hover:text-black transition">
-              4 - Contacto
-            </a>
+           
+      
+            
           </div>
 
           {/* Columna 3: Contacto + redes */}

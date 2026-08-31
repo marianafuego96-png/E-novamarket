@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
+import logoNM from "../assets/logo-novamarket.png";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const { items, totalPrecio, updateQuantity, removeFromCart } = useCart();
+  const { items, totalPrecio, updateQuantity, removeFromCart, clearCart } = useCart();
 
   const [form, setForm] = useState({
     nombre: "",
@@ -18,15 +19,59 @@ export default function Checkout() {
     telefono: "",
   });
 
+  const [enviando, setEnviando] = useState(false);
+  const [error, setError] = useState(null);
+  // true cuando la orden se guardó bien: muestra el cartel de confirmación
+  const [ordenConfirmada, setOrdenConfirmada] = useState(false);
+
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleGuardarDatos(e) {
+  async function handleGuardarDatos(e) {
     e.preventDefault();
-    // Acá después conectamos con el backend para guardar la orden
-    console.log("Datos del cliente:", form);
+
+    if (items.length === 0) {
+      setError("Tu carrito está vacío.");
+      return;
+    }
+
+    setEnviando(true);
+    setError(null);
+
+    try {
+      const token = localStorage.getItem("token");
+
+      const payload = {
+        items: items.map((item) => ({
+          productId: item.id,
+          quantity: item.cantidad,
+        })),
+        shippingAddress: `${form.direccionEnvio}, ${form.ciudad}, ${form.provincia}, CP ${form.codigoPostal}`,
+      };
+
+      const res = await fetch("http://localhost:5000/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || "No se pudo generar la orden");
+      }
+
+      clearCart();
+      setOrdenConfirmada(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setEnviando(false);
+    }
   }
 
   function handleLogout() {
@@ -60,8 +105,12 @@ export default function Checkout() {
 
             {/* Logo, igual al del header del home */}
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#457B9D] text-sm font-semibold text-white text-teal-950 ">
-                NM
+              <div className="flex h-20 w-19 items-center justify-center rounded-lg bg-[#457B9D] p-1 shadow-sm">
+                <img
+                  src={logoNM}
+                  alt="NovaMarket - E-commerce"
+                  className="h-full w-full object-contain"
+                />
               </div>
               <span className="text-sm font-medium text-black">Nova-Market</span>
             </div>
@@ -249,11 +298,16 @@ export default function Checkout() {
               />
             </div>
 
+            {error && (
+              <p className="text-sm text-red-600 text-center">{error}</p>
+            )}
+
             <button
               type="submit"
-              className="w-full rounded-full bg-[#457B9D] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3a6a87]"
+              disabled={enviando}
+              className="w-full rounded-full bg-[#457B9D] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3a6a87] disabled:opacity-60"
             >
-              Guardar datos
+              {enviando ? "Guardando..." : "Guardar datos"}
             </button>
           </form>
         </div>
@@ -268,6 +322,35 @@ export default function Checkout() {
           </div>
         </div>
       </div>
+
+      {/* Cartel de confirmación al guardar la orden con éxito */}
+      {ordenConfirmada && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
+          <div className="max-w-sm w-full rounded-2xl bg-white p-6 shadow-xl text-center">
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#2B8D8B]/10 text-[#2B8D8B]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p className="text-sm font-semibold text-black">
+              Se ha realizado la orden de compra, recibirá un email para realizar el pago
+            </p>
+            <button
+              onClick={() => navigate("/")}
+              className="mt-5 w-full rounded-full bg-[#457B9D] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3a6a87]"
+            >
+              Volver al inicio
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

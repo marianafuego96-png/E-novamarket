@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { registerUser } from "../services/authService";
+import logoNM from "../assets/logo-novamarket.png";
 
 export default function Register() {
   // Un solo estado para los 3 campos del formulario
@@ -36,8 +37,12 @@ export default function Register() {
     <div className="min-h-screen flex flex-col items-center bg-slate-50 px-4 py-10">
       {/* Encabezado: logo + nombre, con link para volver al inicio (mismo tratamiento que login.jsx) */}
       <Link to="/" className="mb-10 flex items-center gap-3">
-        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#457B9D] text-sm font-semibold text-white">
-          NM
+        <div className="flex h-20 w-19 items-center justify-center rounded-lg bg-[#457B9D] p-1.5 shadow-sm">
+          <img
+            src={logoNM}
+            alt="NovaMarket - E-commerce"
+            className="h-full w-full object-contain"
+          />
         </div>
         <div className="text-left">
           <p className="text-base font-bold text-slate-900">Nova-Market</p>
