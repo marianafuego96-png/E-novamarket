@@ -121,11 +121,13 @@ export default function Checkout() {
             <div className="flex items-center gap-3">
               <span className="text-sm font-medium text-black">Hola, {user.name}</span>
               <button
-                onClick={handleLogout}
+                onClick={() => navigate("/login")}
                 className="rounded-full bg-[#457B9D] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3a6a87]"
               >
                 Cerrar sesión
+                
               </button>
+            
             </div>
           )}
         </div>
@@ -146,7 +148,7 @@ export default function Checkout() {
                     <img
                       src={item.imagen}
                       alt={item.nombre}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain"
                     />
                   )}
                 </div>

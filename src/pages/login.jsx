@@ -31,9 +31,29 @@ export default function Login() {
       setLoading(false);
     }
   }
-
+  
   return (
-    <div className="min-h-screen flex flex-col items-center bg-slate-50 px-4 py-10">
+      <div className="min-h-screen flex flex-col items-center bg-slate-50 px-4 py-10">
+    {/* Botón para volver al home, alineado arriba a la izquierda */}
+    <div className="w-full mb-4">
+      <button
+        onClick={() => navigate("/")}
+        className="flex items-center gap-1.5 rounded-full bg-[#457B9D] px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-[#3a6a87]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Volver al Home
+      </button>
+    </div>
+    
       {/* Encabezado: logo + nombre, con link para volver al inicio */}
       <Link to="/" className="mb-10 flex items-center gap-3">
         <div className="flex h-20 w-19 items-center justify-center rounded-lg bg-[#457B9D] p-1.5 shadow-sm">

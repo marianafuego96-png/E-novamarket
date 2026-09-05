@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import EcommerceHero from "./components/EcommerceHero";
-import Register from "./pages/Register";
+import Register from "./pages/register";
 import Login from "./pages/login";
 import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
 import RutaAdmin from "./components/RutaAdmin";
-import AdminProductos from "./pages/AdminProductos";
-import AdminOrdenes from "./pages/AdminOrdenes";
+import AdminPanel from "./pages/AdminPanel";
+
 
 function App() {
   return (
@@ -17,13 +17,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/adminOrdenes" element={<AdminOrdenes />} />
+          <Route path= "/admin" element={<AdminPanel />} />
           <Route
             path="/admin"
             element={
               <RutaAdmin>
-                <AdminProductos />
-                <AdminOrdenes />
+                <AdminPanel />
+                 
               </RutaAdmin>
             }
           />
