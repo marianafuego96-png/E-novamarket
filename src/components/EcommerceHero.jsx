@@ -8,7 +8,7 @@ import heroProductosImg from "../assets/hero-productos.png";
 import logoNM from "../assets/logo-novamarket.png";
 
 // Endpoint real de productos (mismo que usa el panel de admin)
-const API_URL = "http://localhost:5000/api/products";
+const API_URL = vite.env.VITE_API_URL + "/api/products"; 
 
 // Traduce el enum de categoría del backend a una etiqueta legible,
 // ya que el catálogo no tiene un campo de "marca" (se sacó del modelo)
