@@ -3,8 +3,8 @@ import EcommerceHero from "./components/EcommerceHero";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import Checkout from "./pages/Checkout";
-import Footer from "./components/Footer";
-import RutaAdmin from "./components/RutaAdmin";
+import Footer from "./components/footer";
+import RutaAdmin from "./components/rutaadmin";
 import AdminPanel from "./pages/AdminPanel";
 
 
