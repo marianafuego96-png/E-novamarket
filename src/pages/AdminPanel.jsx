@@ -6,8 +6,8 @@ import NuevoProducto from "./NuevoProducto"; // modal de alta
 import { useAuth } from "../context/AuthContext"; // ajustá la ruta si tu AuthContext está en otro lugar
 import logoNM from "../assets/logo-novamarket.png";
 
-const PRODUCTS_URL = vite.env.VITE_API_URL + "/api/products";
-const ORDERS_URL = vite.env.VITE_API_URL + "/api/orders";
+const PRODUCTS_URL = import.meta.env.VITE_API_URL + "/api/products";
+const ORDERS_URL = import.meta.env.VITE_API_URL + "/api/orders";
 
 const CATEGORY_LABELS = {
   accesorios: "Accesorios",
