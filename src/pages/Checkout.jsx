@@ -51,7 +51,7 @@ export default function Checkout() {
         shippingAddress: `${form.direccionEnvio}, ${form.ciudad}, ${form.provincia}, CP ${form.codigoPostal}`,
       };
 
-      const res = await fetch(vite.env.VITE_API_URL + "/api/orders", {
+      const res = await fetch(import.meta.env.VITE_API_BACK + "/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

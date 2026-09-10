@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { X, ImagePlus } from "lucide-react";
 
 // Endpoint base de productos en el backend
-const API_URL = import.meta.env.VITE_API_URL + "/api/products";
+const API_URL = import.meta.env.VITE_API_BACK + "/api/products";
 
 // Categorías fijas que acepta el backend (enum: accesorios | periféricos | gadgets)
 const CATEGORIAS = [

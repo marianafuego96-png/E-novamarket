@@ -7,7 +7,7 @@
 // Si el día de mañana cambia la URL o el nombre del endpoint,
 // solo tocás este archivo, no cada componente.
 
-const API_URL = import.meta.env.VITE_API_URL + "/api/auth/register"; // 👉 cambio esto por la URL real de franco
+const API_URL = import.meta.env.VITE_API_BACK + "/api/auth/register"; // 👉 cambio esto por la URL real de franco
 
 export async function registerUser({ name, email, password }) {
   const response = await fetch(`${API_URL}`, {
@@ -28,7 +28,7 @@ export async function registerUser({ name, email, password }) {
   return data; // lo que devuelva el backend (token, usuario, etc.)
 }
 
-const Apilogin = import.meta.env.VITE_API_URL + "/api/auth/login"; // 👉 cambio esto por la URL real de franco
+const Apilogin = import.meta.env.VITE_API_BACK + "/api/auth/login"; // 👉 cambio esto por la URL real de franco
 
 export async function loginUser({ email, password }) {
   const response = await fetch(`${Apilogin}`, {
